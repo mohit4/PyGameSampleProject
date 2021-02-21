@@ -17,7 +17,13 @@ from animation import PLAYER_SLIDE_SEQ
 from animation import PLAYER_SHOOT_SEQ
 from animation import PLAYER_MELEE_SEQ
 from animation import PLAYER_DEAD_SEQ
+from sounds import player_jump_sound
+from sounds import player_melee_sound
+from sounds import player_run_sound
+from sounds import player_slide_sound
+from sounds import player_shoot_sound
 
+pg.mixer.init()
 
 class State:
 
@@ -77,22 +83,28 @@ class Player(pg.sprite.Sprite):
             self.direction = Direction.LEFT
             self.state.state_animation = PLAYER_RUN_SEQ
             self.state.state_animation_seq = 0
+            player_run_sound.play(maxtime=1000)
         if pressed_keys[K_RIGHT] and self.state.is_state_finished():
             self.direction = Direction.RIGHT
             self.state.state_animation = PLAYER_RUN_SEQ
             self.state.state_animation_seq = 0
+            player_run_sound.play(maxtime=1000)
         if pressed_keys[K_SPACE] and self.state.is_state_finished():
             self.state.state_animation = PLAYER_JUMP_SEQ
             self.state.state_animation_seq = 0
+            player_jump_sound.play()
         if pressed_keys[K_z] and self.state.is_state_finished():
             self.state.state_animation = PLAYER_SLIDE_SEQ
             self.state.state_animation_seq = 0
+            player_slide_sound.play()
         if pressed_keys[K_x] and self.state.is_state_finished():
             self.state.state_animation = PLAYER_SHOOT_SEQ
             self.state.state_animation_seq = 0
+            player_shoot_sound.play()
         if pressed_keys[K_a] and self.state.is_state_finished():
             self.state.state_animation = PLAYER_MELEE_SEQ
             self.state.state_animation_seq = 0
+            player_melee_sound.play()
         if pressed_keys[K_q] and self.state.is_state_finished():
             self.state.state_animation = PLAYER_DEAD_SEQ
             self.state.state_animation_seq = 0

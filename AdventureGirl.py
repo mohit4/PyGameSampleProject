@@ -35,4 +35,5 @@ while running:
     pg.display.flip()
     clock.tick(15)
 
+pg.mixer.quit()
 pg.quit()
